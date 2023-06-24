@@ -1,0 +1,7 @@
+diffusers==0.17.0
+transformers
+scipy 
+ftfy 
+accelerate
+requests
+pillow
