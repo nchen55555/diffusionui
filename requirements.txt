@@ -1,4 +1,4 @@
--q streamlit
+streamlit
 diffusers==0.17.0
 transformers
 scipy 
