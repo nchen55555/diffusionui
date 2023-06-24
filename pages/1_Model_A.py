@@ -8,7 +8,7 @@ import torch
 from diffusers import StableDiffusionControlNetPipeline
 from diffusers.utils import load_image
 
-from cv2 import cv2
+import cv2
 from PIL import Image
 import numpy as np
 import os
