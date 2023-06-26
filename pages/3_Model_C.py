@@ -1,4 +1,3 @@
-
 import streamlit as st
 from transformers import AutoProcessor, AutoModelForCausalLM, BlipProcessor, BlipForConditionalGeneration
 import requests
@@ -50,9 +49,6 @@ def prompt_process(text, url):
   low_threshold = 100
   high_threshold = 200
 
-  starter, ender = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
-  repetitions = 20
-  timings =np.zeros((repetitions,1))
   image = load_image(url)
   image = np.array(image)
   image = cv2.Canny(image, low_threshold, high_threshold)
@@ -70,7 +66,8 @@ def prompt_process(text, url):
     num_inference_steps=20,
   )
   image = output.images[0]
-  return st.image(image)
+  return image
+
 
 if 'stage' not in st.session_state:
     st.session_state.stage = 0

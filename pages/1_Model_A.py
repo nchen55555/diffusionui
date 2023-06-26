@@ -55,8 +55,6 @@ def prompt_process(text, url):
   low_threshold = 100
   high_threshold = 200
 
-  repetitions = 20
-  timings =np.zeros((repetitions,1))
   image = load_image(url)
   image = np.array(image)
   image = cv2.Canny(image, low_threshold, high_threshold)
@@ -65,9 +63,7 @@ def prompt_process(text, url):
   canny_image = Image.fromarray(image)
   add = ", best quality, extremely detailed"
   finalprompt = [text + add][:77]
-  temp = torch.Generator("cuda") if torch.cuda.is_available() else torch.Generator("cpu")
-  generator = [temp.manual_seed(2)]
-#   generator = [torch.Generator(device="cuda").manual_seed(2)]
+  generator = [torch.Generator(device="cuda").manual_seed(2)]
   output = pipe(
     finalprompt,
     canny_image,
